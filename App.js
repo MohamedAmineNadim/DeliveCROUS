@@ -1,23 +1,46 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Image, Switch } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Image, Switch, TouchableOpacity } from 'react-native';
 import menu from './composants/menu.json';
 
 export default function App() {
   let [dishes, setDishes] = useState(menu);
+  let [screen, setScreen] = useState('cart'); //'main', 'cart' or 'dish'
 
   let selectedDishes = menu.filter(function (e){
     return e.isSelected;
   });
+
+  if (screen == 'cart'){
+    return(
+      <ScrollView style={styles.container}>
+        <TouchableOpacity style = {styles.navBarCart}
+          onPress = {function (){
+            setScreen('menu');
+          }}
+        >
+          <Text style = {styles.navTextCart}>🍔 Menu</Text>
+        </TouchableOpacity>
+      </ScrollView>
+    )
+  }
+
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <View style = {styles.title}>
-          <Text style = {styles.text}>DeliveCROUS</Text>
-          <StatusBar style="auto" />
+    <ScrollView style={styles.container}>
+        <View style = {styles.navBarMain}>
+          <TouchableOpacity style = {styles.cartImage}
+          onPress = {function (){
+            setScreen('cart');
+          }}
+          >
+            <Cart/>
+          </TouchableOpacity>
+          <View>
+            <StatusBar style="auto" />
+          </View>
         </View>
-        {/* <View style={styles.cart}></View> */}
         <View style={styles.menu}>
+          <Text style = {styles.Selection}>Votre sélection</Text>
           {selectedDishes.length > 0 ? (selectedDishes.map(function (d){
             return <Text style = {styles.selectionPlats}>{d.platNom}</Text>;
           })
@@ -47,7 +70,6 @@ export default function App() {
             )
           })}
         </View>
-      </View>
     </ScrollView>
   );
 }
@@ -70,6 +92,18 @@ function Menu(props){
   );
 }
 
+function Cart(props){
+  return(
+    <View style={styles.cartCard}>
+      <Image 
+        style = {styles.cartImage}
+        source = {{uri: "https://thumbs.dreamstime.com/b/shopping-cart-icon-vector-logo-137282150.jpg"}}>
+      </Image>
+      <Text style = {styles.text}>DeliveCROUS</Text>
+    </View>
+  )
+}
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -77,15 +111,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#dff1f1'
   },
   title: {
-    backgroundColor: '#d0f1f0',
+    backgroundColor: '#9cb1b5',
     flexDirection: 'row',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
+    alignItems: 'baseline',
     padding: 40,
     borderRadius: 2,
     borderWidth: 5,
     borderBottomWidth: 0,
     borderColor: "#55adad"
-    
   },
   text: {
     justifyContent: 'center',
@@ -94,7 +128,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontStyle: 'italic',
     fontWeight: 'bold',
-    color: '#665555'
+    color: '#665555',
+    paddingLeft: 50
   },
   menu: {
     borderWidth: 5,
@@ -118,7 +153,57 @@ const styles = StyleSheet.create({
 
   },
   selectionPlats: {
+    paddingLeft: 5,
     fontSize: 15,
-    color: "blue"
+    color: 'black',
+    borderRadius: 3,
+    borderWidth: 2,
+    borderColor: '#55adad'
+  },
+  Selection: {
+    margin: 3,
+    paddingLeft: '33%',
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#665555',
+    borderRadius: 3,
+    borderWidth: 2,
+    borderColor: '#55adad'
+  },
+  navBarMain: {
+    backgroundColor: '#9cb1b5',
+    padding: '5%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'baseline'
+  },
+  navTextMain: {
+    fontSize: 30,
+    fontFamily: 'Baskerville',
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: '#665555',
+  },
+  navBarCart: {
+    padding: '5%',
+    backgroundColor: '#9cb1b5',
+    alignItems: 'baseline'
+  },
+  navTextCart: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontStyle: 'italic',
+    color: '#665555',
+    paddingLeft: '1%'
+  },
+  cartImage: {
+    resizeMode: 'contain',
+    width: 30,
+    height: 30
+  },
+  cartCard: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'baseline'
   }
 });
