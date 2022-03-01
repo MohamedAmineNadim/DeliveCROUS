@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView, Image, Switch } from 'react-native'
 import menu from './composants/menu.json';
 
 export default function App() {
-  let [selected, setSelected] = useState(menu);
+  let [dishes, setDishes] = useState(menu);
 
   let selectedDishes = menu.filter(function (e){
     return e.isSelected;
@@ -35,13 +35,13 @@ export default function App() {
                 platDesc = {elmnt.platDesc}
                 onSelect = {function (){
                   let newSelection = menu.map(function(e){
-                    if (elmnt.isSelected == e.isSelected){
+                    if (elmnt.platNom == e.platNom){
                       e.isSelected = !e.isSelected;
                       return e;
                     }
                     return e;
                   });
-                  setSelected(newSelection);
+                  setDishes(newSelection);
                 }}
               />
             )
