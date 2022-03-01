@@ -1,0 +1,30 @@
+[
+    {
+        "platNom": "Hamburger avec frites",
+        "platPrix": "3.99",
+        "platDesc": "Un burger au pain de sésame et un steak de 50g avec crudités et frites. Sauce au choix parmi la liste.",
+        "platImage": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVYCnv99bIiUvLmcmXEaYkX7jPE_hd4dVftw&usqp=CAU",
+        "isSelected": false
+    },
+    {
+        "platNom": "Pâtes carbonara",
+        "platPrix": "3.99",
+        "platDesc": "Pâtes penne ou spaghetti cuites dans une sauce à base de crème et oeuf, servies avec des lardons.",
+        "platImage": "https://assets.afcdn.com/recipe/20200316/109086_w1024h1024c1cx1060cy707.webp",
+        "isSelected": false
+    },
+    {
+        "platNom": "Pâtes bolognaise",
+        "platPrix": "3.99",
+        "platDesc": "Pâtes penne ou spaghetti cuites dans une sauce tomate, servies avec des boulettes de boeuf ou viande hachée.",
+        "platImage": "https://img.cuisineaz.com/610x610/2016/07/29/i84653-spaghettis-bolognaise-rapides.jpg",
+        "isSelected": false
+    },
+    {
+        "platNom": "Panini crudités et poulet",
+        "platPrix": "3.99",
+        "platDesc": "Un panini garni de tomates fraîches, de salade, de gruyère et de blanc de poulet",
+        "platImage": "https://assets.afcdn.com/recipe/20180420/78699_w1024h576c1cx2800cy1866.jpg",
+        "isSelected": false
+    }
+]
