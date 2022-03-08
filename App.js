@@ -5,7 +5,7 @@ import menu from './composants/menu.json';
 
 export default function App() {
   let [dishes, setDishes] = useState(menu);
-  let [screen, setScreen] = useState('cart'); //'main', 'cart' or 'dish'
+  let [screen, setScreen] = useState('main'); //'main', 'cart' or 'dish'
 
   let selectedDishes = menu.filter(function (e){
     return e.isSelected;
